@@ -11,6 +11,7 @@ jobs:
     steps:
       - run: | 
           echo "aaa=XYZ" >> ${GITHUB_ENV}
+          env
           
   build:
     runs-on: ubuntu-latest
@@ -24,3 +25,4 @@ jobs:
       - run: | 
           echo ${{ matrix.node }}
           echo ${aaa}
+          env
