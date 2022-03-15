@@ -32,8 +32,11 @@ jobs:
           env
           echo ""
           echo "-----------------------------------------------------------------------------"
+          if [[ ${GITHUB_EVENT_NAME} == "push" ]]; then
+            BRF_BRANCH=${GITHUB_REF_NAME}
+          elif [[ ${GITHUB_EVENT_NAME} == "pull_request" ]]; then 
+            BRF_BRANCH=${GITHUB_HEAD_REF}  
           BRF_REPO=${GITHUB_REPOSITORY##*/}
-          BRF_BRANCH=${GITHUB_REF##*/}
           echo "BRF_REPO is [${BRF_REPO}]"
           echo "BRF_BRANCH is [${BRF_BRANCH}]"
           echo "GITHUB_EVENT_NAME is [${GITHUB_EVENT_NAME}]"
