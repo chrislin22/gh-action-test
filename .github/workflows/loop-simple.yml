@@ -5,14 +5,7 @@ on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
-jobs:
-  setup:
-    runs-on: ubuntu-latest
-    steps:
-      - run: | 
-          echo "aaa=XYZ" >> ${GITHUB_ENV}
-          env
-          
+jobs:    
   build:
     runs-on: ubuntu-latest
     strategy:
@@ -24,5 +17,3 @@ jobs:
     steps:
       - run: | 
           echo ${{ matrix.node }}
-          echo ${aaa}
-          env
