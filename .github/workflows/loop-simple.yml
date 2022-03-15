@@ -10,7 +10,10 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node: [6, 8, 10]
+        node: 
+          - a
+          - b
+          - c
     steps:
       - run: | 
           echo ${{ matrix.node }}
