@@ -34,27 +34,23 @@ jobs:
           echo ""
           echo "-----------------------------------------------------------------------------"
           
-          BRF_REPO=${GITHUB_REPOSITORY}
-
           if [[ ${GITHUB_EVENT_NAME} == "push" ]]; then
             BRF_BRANCH=${GITHUB_REF_NAME}
           elif [[ ${GITHUB_EVENT_NAME} == "pull_request" ]]; then 
             BRF_BRANCH=${GITHUB_HEAD_REF} 
           fi
           
-          echo "BRF_REPO is [${BRF_REPO}]"
           echo "BRF_BRANCH is [${BRF_BRANCH}]"
+          echo "GITHUB_REPOSITORY is [${GITHUB_REPOSITORY}]"
           echo "GITHUB_EVENT_NAME is [${GITHUB_EVENT_NAME}]"
           echo "GITHUB_HEAD_REF is [${GITHUB_HEAD_REF}]"
           echo "GITHUB_BASE_REFis [${GITHUB_BASE_REF}]"
           
-          echo "BRF_REPO=${BRF_REPO}" >> $GITHUB_ENV
-          echo "BRF_BRANCH=${BRF_REPO}"
+          echo "BRF_BRANCH=${BRF_BRANCH}" >> $GITHUB_ENV
           echo ""
 
       # Runs a set of commands using the runners shell
       - name: Run a multi-line script
         run: |
           echo "-----------------------------------------------------------------------------"
-          echo "BRF_REPO is [${BRF_REPO}]"
           echo "BRF_BRANCH is [${BRF_BRANCH}]"
