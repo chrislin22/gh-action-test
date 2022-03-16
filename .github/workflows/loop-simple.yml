@@ -15,5 +15,7 @@ jobs:
           - b
           - c
     steps:
+      - run: |
+          echo "--------------"
       - run: | 
           echo ${{ matrix.node }}
