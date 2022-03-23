@@ -5,16 +5,9 @@ name: Manual workflow
 # Controls when the action will run. Workflow runs when manually triggered using the UI
 # or API.
 on:
+  pull_request:
+    branches: [ branch-1 ]
   workflow_dispatch:
-    # Inputs the workflow accepts.
-    inputs:
-      name:
-        # Friendly description to be shown in the UI instead of 'name'
-        description: 'Person to greet'
-        # Default value if no value is explicitly provided
-        default: 'World'
-        # Input has to be provided for the workflow to run
-        required: true
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -26,7 +19,20 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
     # Runs a single command using the runners shell
-    - name: Send greeting     
+    - name: print env     
       run: |
-        echo "Hello ${{ github.event.inputs.name }}"
         env
+
+        echo "--------------------------------------------------------------"  
+        REAL_BRANCH=${GITHUB_REF_NAME}
+        echo "--------------------------------------------------------------"  
+        echo "REAL_BRANCH is [${REAL_BRANCH}]"
+        if [[ ${GITHUB_EVENT_NAME} == "push" ]]; then
+          REAL_BRANCH=${GITHUB_REF_NAME}
+        elif [[ ${GITHUB_EVENT_NAME} == "pull_request" ]]; then 
+          REAL_BRANCH=${GITHUB_HEAD_REF} 
+        fi
+        echo "GITHUB_EVENT_NAME is [${GITHUB_EVENT_NAME}]"
+        echo "GITHUB_REF_NAME is [${GITHUB_REF_NAME}]"
+        echo "GITHUB_HEAD_REF is [${GITHUB_HEAD_REF}]"
+        echo "REAL_BRANCH is [${REAL_BRANCH}]"
