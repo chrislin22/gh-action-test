@@ -1,0 +1,28 @@
+# This is a basic workflow to help you get started with Actions
+
+name: loop-using-two-jobs
+
+# Controls when the workflow will run
+on:
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+
+  setup:
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.matrix.outputs.value }}
+    steps:
+      - id: matrix
+        run: |
+          echo '::set-output name=value::[\"a\", \"b\", \"c\"]'
+  build:
+    needs: [ setup ]
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        value: ${{fromJson(needs.setup.outputs.matrix)}}
+    steps:
+      - run: |
+          echo "${{ matrix.value }}"
