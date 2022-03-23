@@ -18,6 +18,12 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
+    
+    - name: test sed
+      run: |
+        sed -i -e 's/dependency=warn/dependency=info' test.txt
+        cat test.txt
+        
     # Runs a single command using the runners shell
     - name: print env     
       run: |
