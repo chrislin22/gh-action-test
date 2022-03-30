@@ -56,7 +56,7 @@ jobs:
           echo "BRF_BRANCH is [${BRF_BRANCH}]"
       
       - name: pr comments
-        uses: actions/github-script@v5
+        uses: actions/github-script@v6
         with:
           github-token: ${{secrets.GITHUB_TOKEN}}
           script: |
