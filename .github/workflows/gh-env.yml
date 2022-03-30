@@ -66,3 +66,10 @@ jobs:
               repo: context.repo.repo,
               body: '👋 Thanks for reporting!'
             })
+      
+      - name: to fail the build
+        run: |
+          echo "-----------------------------------------------------------------------------"
+          echo "to fail the build"
+          exit 1
+      
