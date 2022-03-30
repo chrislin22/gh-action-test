@@ -63,8 +63,8 @@ jobs:
       - name: set pr comment
         run : |
           snyk_site="Please see result at: <a href=\'https://app.snyk.io/org/riptano/projects\'>https://app.snyk.io/org/riptano/projects</a>"
-          good_msg="<p>✅ snyk scan passed - found no issues with severity level <b>${{ env.SNYK_SEVERITY_THRESHOLD_LEVEL }}</b> or higher!</p>$snyk_site"
-          bad_msg="<p>🚫 snyk scan failed - found issues with severity level <b>${{ env.SNYK_SEVERITY_THRESHOLD_LEVEL }}</b> or higher!</p>$snyk_site"
+          good_msg="<p>✅ snyk scan passed - did not found issues with severity level <b><i>${{ env.SNYK_SEVERITY_THRESHOLD_LEVEL }}</i></b> or higher.</p>$snyk_site"
+          bad_msg="<p>🚫 snyk scan found issues with severity level <b><i>${{ env.SNYK_SEVERITY_THRESHOLD_LEVEL }}</i></b> or higher!</p>$snyk_site"
           
           if [[ $SNYK_TEST_PASSED == 'true' ]]; then           
             echo "SNYK_SCAN_COMMENT=$good_msg" >> $GITHUB_ENV 
