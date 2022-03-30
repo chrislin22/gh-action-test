@@ -61,9 +61,9 @@ jobs:
       - name: set pr comment
         run : |
           if [[ $SNYK_TEST_PASSED == 'true' ]]; then
-            echo "SNYK_PR_COMMENT=👋 Thanks for reporting!" >> $GITHUB_ENV 
+            echo "SNYK_PR_COMMENT=✅ snyk scan success!" >> $GITHUB_ENV 
           else
-            echo "SNYK_PR_COMMENT=🛑 fire!" >> $GITHUB_ENV 
+            echo "SNYK_PR_COMMENT=🚫 snyk scan found major issues!" >> $GITHUB_ENV 
           fi
 
       - name: pr comment
