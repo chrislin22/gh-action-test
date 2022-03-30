@@ -69,7 +69,7 @@ jobs:
           if [[ $SNYK_TEST_PASSED == 'true' ]]; then           
             echo "SNYK_SCAN_COMMENT=$good_msg" >> $GITHUB_ENV 
           else
-            echo "SNYK_SCAN_COMMENT=bad_msg" >> $GITHUB_ENV 
+            echo "SNYK_SCAN_COMMENT=$bad_msg" >> $GITHUB_ENV 
           fi
 
       - name: pr comment
