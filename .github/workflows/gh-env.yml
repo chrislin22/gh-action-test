@@ -63,7 +63,7 @@ jobs:
       - name: set pr comment
         run : |
           if [[ $SNYK_TEST_PASSED == 'true' ]]; then
-            echo "SNYK_SCAN_COMMENT=<p>✅ snyk scan passed - did not found issues with severity level <b>${{ SNYK_SEVERITY_THRESHOLD_LEVEL }}</b> or higher!</p> Please see result here: https://app.snyk.io/org/riptano/projects " >> $GITHUB_ENV 
+            echo "SNYK_SCAN_COMMENT=<p>✅ snyk scan passed - did not found issues with severity level <b>${{ env.SNYK_SEVERITY_THRESHOLD_LEVEL }}</b> or higher!</p> Please see result here: https://app.snyk.io/org/riptano/projects " >> $GITHUB_ENV 
           else
             echo "SNYK_SCAN_COMMENT=🚫 snyk scan failed - found major issues! Please see result here: https://app.snyk.io/org/riptano/projects" >> $GITHUB_ENV 
           fi
