@@ -57,12 +57,20 @@ jobs:
           echo "-----------------------------------------------------------------------------"
           echo "BRF_BRANCH is [${BRF_BRANCH}]"
       
+#       - name: set pr comment
+#         run : |
+#           if [[ $SNYK_TEST_PASSED == 'true' ]]; then
+#             echo "SNYK_PR_COMMENT=👋 Thanks for reporting!" >> $GITHUB_ENV 
+#           else
+#             echo "SNYK_PR_COMMENT=🛑 fire!" >> $GITHUB_ENV 
+#           fi
+
       - name: set pr comment
         run : |
           if [[ $SNYK_TEST_PASSED == 'true' ]]; then
-            echo "SNYK_PR_COMMENT=👋 Thanks for reporting!" >> $GITHUB_ENV 
+            echo "SNYK_PR_COMMENT=Thanks for reporting!" >> $GITHUB_ENV 
           else
-            echo "SNYK_PR_COMMENT=🛑 fire!" >> $GITHUB_ENV 
+            echo "SNYK_PR_COMMENT=fire!" >> $GITHUB_ENV 
           fi
 
       - name: pr comment
