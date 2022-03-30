@@ -65,7 +65,7 @@ jobs:
               owner: context.repo.owner,
               repo: context.repo.repo,
             //  body: '👋 Thanks for reporting!'
-              body: 🛑 fire!
+              body: '🛑 fire!'
             })
       
       - name: to fail the build
