@@ -79,8 +79,8 @@ jobs:
 
       - name: PR gating
         run: |
-          echo '${{ SNYK_PR_COMMENT }}' 
-          if [[ $SNYK_TEST_PASSED != 'true' ]]; then
+          echo "$SNYK_PR_COMMENT" 
+          if [[ "$SNYK_TEST_PASSED" != 'true' ]]; then
             exit 1 
           fi
       
