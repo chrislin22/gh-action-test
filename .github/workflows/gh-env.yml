@@ -56,7 +56,7 @@ jobs:
         run: |
           echo "-----------------------------------------------------------------------------"
           echo "BRF_BRANCH is [${BRF_BRANCH}]"
-          echo "SNYK_TEST_PASSED=false" >> $GITHUB_ENV
+          #echo "SNYK_TEST_PASSED=false" >> $GITHUB_ENV
       
       - name: set pr comment
         run : |
