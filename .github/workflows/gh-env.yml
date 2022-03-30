@@ -48,6 +48,8 @@ jobs:
           
           echo "BRF_BRANCH=${BRF_BRANCH}" >> $GITHUB_ENV
           echo ""
+          
+          echo "SNYK_TEST_PASSED=true" >> $GITHUB_ENV
 
       # Runs a set of commands using the runners shell
       - name: Run a multi-line script
@@ -55,7 +57,15 @@ jobs:
           echo "-----------------------------------------------------------------------------"
           echo "BRF_BRANCH is [${BRF_BRANCH}]"
       
-      - name: pr comments
+      - name: set pr comment
+        run : |
+          if [[ $SNYK_TEST_PASSED == 'true' ]]; then
+            echo "SNYK_PR_COMMENT=👋 Thanks for reporting!" >> $GITHUB_ENV 
+          else
+            echo "SNYK_PR_COMMENT=🛑 fire!" >> $GITHUB_ENV 
+          fi
+
+      - name: pr comment
         uses: actions/github-script@v6
         with:
           github-token: ${{secrets.GITHUB_TOKEN}}
@@ -64,13 +74,13 @@ jobs:
               issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
-            //  body: '👋 Thanks for reporting!'
-              body: '🛑 fire!'
+              body: '${{ SNYK_PR_COMMENT }}'
             })
-      
-      - name: to fail the build
+
+      - name: PR gating
         run: |
-          echo "-----------------------------------------------------------------------------"
-          echo "to fail the build"
-          exit 1
+          echo '${{ SNYK_PR_COMMENT }}' 
+          if [[ $SNYK_TEST_PASSED != 'true' ]]; then
+            exit 1 
+          fi
       
