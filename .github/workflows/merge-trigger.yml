@@ -4,7 +4,8 @@ on:
       - closed
     branches:    
       - main
-    
+  workflow_dispatch:    
+  
 jobs:
   my_job:
     runs-on: ubuntu-latest
@@ -15,3 +16,6 @@ jobs:
       - name: dump env
         run: |
           env
+          echo "-----------------"
+          echo $GITHUB_REF_NAME
+          echo "-----------------"
