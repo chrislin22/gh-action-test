@@ -1,0 +1,16 @@
+on:
+  pull_request:
+    branches:
+      - main
+    types: [closed]
+    
+ jobs:
+  hello job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Git checkout
+        uses: actions/checkout@v2
+        
+      - name: dump env
+        run :|
+          env
