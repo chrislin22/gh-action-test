@@ -1,5 +1,5 @@
 on:
-  pull_request_target:
+  pull_request:
     types:
       - closed
     branches:    
@@ -16,6 +16,11 @@ jobs:
       - name: dump env
         run: |
           env
+          
+          REAL_BRANCH=${GITHUB_REF_NAME}
+          if [[ ${GITHUB_EVENT_NAME} == "pull_request" ]]; then 
+            REAL_BRANCH=${GITHUB_HEAD_REF} 
+          fi
           echo "-----------------"
-          echo $GITHUB_REF_NAME
+          echo $REAL_BRANCH
           echo "-----------------"
