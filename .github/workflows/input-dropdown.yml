@@ -3,25 +3,32 @@ name: input-dropdown
 on:
   workflow_dispatch:
     inputs:
-       environment:
-         type: environment
-         description: Select the environment
-       choice:
+      logLevel:
+        description: 'Log level'
+        required: true
+        default: 'warning' 
         type: choice
-        description: Make a choice
         options:
-        - foo
-        - bar
-        - baz
+        - info
+        - warning
+        - debug 
+      print_tags:
+        description: 'True to print to STDOUT'
+        required: true 
+        type: boolean 
+      tags:
+        description: 'Test scenario tags'
+        required: true 
+        type: string
+      environment:
+        description: 'Environment to run tests against'
+        type: environment
+        required: true 
+
 jobs:
-  build:
+  print-tag:
     runs-on: ubuntu-latest
-
+    if:  ${{ github.event.inputs.print_tags == 'true' }} 
     steps:
-      - uses: actions/checkout@v2
-
-      - name: greet
-        run: | 
-          echo "environment is ${{ github.event.inputs.environment }}"
-          echo "boolean is ${{ github.event.inputs.boolean }}"
-          echo "choice is ${{ github.event.inputs.choice }}"
+      - name: Print the input tag to STDOUT
+        run: echo  The tags are ${{ github.event.inputs.tags }} 
