@@ -1,5 +1,8 @@
 name: input-dropdown
 
+env:
+  SERVER: production
+  
 on:
   workflow_dispatch:
     inputs:
