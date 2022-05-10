@@ -55,7 +55,7 @@ jobs:
           echo "-----------------------------------------------------------------------------"
           echo "BRF_BRANCH is [${BRF_BRANCH}]"    - name: use the repo and branch name to create filter file for the snyk projects
           cat $GITHUB_ENV
-          cat << EOF > ggg
+          cat <<- EOF > ggg
           {
             "filters": {
               "tags": {
