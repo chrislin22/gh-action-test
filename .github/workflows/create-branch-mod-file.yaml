@@ -1,0 +1,20 @@
+name: 🎋 create new branch with a file
+
+on: 
+  workflow_dispatch:  
+
+
+jobs:
+  snyk-cli-scan:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Git checkout
+        uses: actions/checkout@v2
+      
+      - name: create branch
+        run |:
+          git checkout -b junk1_branch
+          touch junk1.txt
+          git add junk1.txt
+          git commit -m "added junk1.txt"
+          git push -u origin junk1_branch
