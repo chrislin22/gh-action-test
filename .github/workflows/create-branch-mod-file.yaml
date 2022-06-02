@@ -5,7 +5,7 @@ on:
 
 
 jobs:
-  snyk-cli-scan:
+  create-branch:
     runs-on: ubuntu-latest
     steps:
       - name: Git checkout
