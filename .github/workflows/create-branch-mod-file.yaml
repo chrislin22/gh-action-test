@@ -35,6 +35,6 @@ jobs:
       - name: create pull request
         run: |
           echo ${{ secrets.GITHUB_TOKEN }} | gh auth login --with-token
-          gh pr create --head "$test_branch_1" --base "$base_branch"  \
+          gh pr create --head "$head_branch" --base "$base_branch"  \
             --title "title goes here" -r "kknd22" \
             --body "body goes here" 
