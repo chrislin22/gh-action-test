@@ -3,7 +3,10 @@ name: 🎋 create new branch with a file
 on: 
   workflow_dispatch:  
 
-
+env: 
+  head_branch : test_branch_1
+  base_branch: main
+  
 jobs:
   create-branch:
     runs-on: ubuntu-latest
@@ -11,13 +14,24 @@ jobs:
       - name: Git checkout
         uses: actions/checkout@v2
       
-      - name: create branch
+      - name: create branch if not exist yet
         run: |
+          bcount=(git ls-remote --heads git@github.com:chrislin22/gh-action-test $head_branch | wc -l)
+          if [[ $bcount == 1 ]]; then
+            exit 0
+          fi
+          
           git config --local user.email "tip@gha"
           git config --local user.name "GHA"
           
-          git checkout -b junk1_branch
+          git checkout -b $head_branch
           touch junk1.txt
           git add junk1.txt
           git commit -m "added junk1.txt"
-          git push -u origin junk1_branch
+          git push -u origin $head_branch
+          
+      - name: create pull request
+        run: |
+          gh pr create --head $test_branch_1 --base $base_branch  \
+            --title "title goes here" -r kknd22 \
+            --body "body goes here" 
