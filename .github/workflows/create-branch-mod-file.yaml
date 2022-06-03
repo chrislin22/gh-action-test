@@ -4,8 +4,9 @@ on:
   workflow_dispatch:  
 
 env: 
-  head_branch : test_branch_1
+  head_branch : test_branch_2
   base_branch: main
+  dummy_file: test2.txt
   
 jobs:
   create-branch:
@@ -27,9 +28,10 @@ jobs:
           git config --local user.name "Jhon Doe"
           
           git checkout -b $head_branch
-          touch test1.txt
-          git add test1.txt
-          git commit -m "added test1.txt"
+          touch $dummy_file
+          echo $dummy_file > $dummy_file
+          git add $dummy_file
+          git commit -m "added $dummy_file"
           git push -u origin $head_branch
           
       - name: create pull request
