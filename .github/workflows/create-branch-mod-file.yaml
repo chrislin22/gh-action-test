@@ -15,8 +15,8 @@ jobs:
         uses: actions/checkout@v2
       
       - name: create branch if not exist yet
-        env: 
-          GITHUB_TOKEN : ${{ secrets.GITHUB_TOKEN }}
+#         env: 
+#           GITHUB_TOKEN : ${{ secrets.GITHUB_TOKEN }}
         run: |
           bcount=$(git ls-remote --heads https://github.com/chrislin22/gh-action-test $head_branch | wc -l | xargs)
           if [[ $bcount == 1 ]]; then
