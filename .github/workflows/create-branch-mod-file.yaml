@@ -16,7 +16,7 @@ jobs:
       
       - name: create branch if not exist yet
         run: |
-          bcount=$(git ls-remote --heads git@github.com:chrislin22/gh-action-test $head_branch | wc -l | xargs)
+          bcount=$(git ls-remote --heads https://github.com:chrislin22/gh-action-test $head_branch | wc -l | xargs)
           if [[ $bcount == 1 ]]; then
             exit 0
           fi
@@ -32,6 +32,7 @@ jobs:
           
       - name: create pull request
         run: |
+          echo ${{ secrets.GITHUB_TOKEN }} | gh auth login --with-token
           gh pr create --head "$test_branch_1" --base "$base_branch"  \
             --title "title goes here" -r "kknd22" \
             --body "body goes here" 
