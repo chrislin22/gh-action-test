@@ -32,6 +32,6 @@ jobs:
           
       - name: create pull request
         run: |
-          gh pr create --head $test_branch_1 --base $base_branch  \
-            --title "title goes here" -r kknd22 \
+          gh pr create --head "$test_branch_1" --base "$base_branch"  \
+            --title "title goes here" -r "kknd22" \
             --body "body goes here" 
