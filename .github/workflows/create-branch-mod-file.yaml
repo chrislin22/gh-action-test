@@ -18,7 +18,7 @@ jobs:
         env: 
           GITHUB_TOKEN : ${{ secrets.GITHUB_TOKEN }}
         run: |
-          bcount=$(git ls-remote --heads https://github.com:chrislin22/gh-action-test $head_branch | wc -l | xargs)
+          bcount=$(git ls-remote --heads https://github.com/chrislin22/gh-action-test $head_branch | wc -l | xargs)
           if [[ $bcount == 1 ]]; then
             exit 0
           fi
