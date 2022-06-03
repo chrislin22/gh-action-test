@@ -34,7 +34,8 @@ jobs:
           
       - name: create pull request
         env: 
-          GITHUB_TOKEN : ${{ secrets.GITHUB_TOKEN }}        run: |
+          GITHUB_TOKEN : ${{ secrets.GITHUB_TOKEN }}        
+        run: |
           gh pr create --head "$head_branch" --base "$base_branch"  \
             --title "title goes here" -r "kknd22" \
             --body "body goes here" 
