@@ -82,3 +82,8 @@ jobs:
       - name: bash version
         run: |
          bash --version
+
+      - name: yq version
+        run: |
+         yq --version
+  
