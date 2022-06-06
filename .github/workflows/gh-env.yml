@@ -78,3 +78,7 @@ jobs:
           }
           EOF 
           cat ggg
+
+      - name: bash version
+        run: |
+         bash --version
