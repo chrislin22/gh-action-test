@@ -12,9 +12,17 @@ on:
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
+    inputs:
+      channel:
+        description: 'release channel'
+        required: true
+        type: choice
+        options:
+          - gov  
 
 env:
   VER: v2
+  CHANNEL: ${{ github.event.inputs.channel }}
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -86,4 +94,5 @@ jobs:
       - name: yq version
         run: |
          yq --version
+         echo "CHANNEL is [$CHANNEL]"
   
