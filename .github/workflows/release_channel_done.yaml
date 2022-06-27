@@ -1,0 +1,26 @@
+name: 🏁 Release Channel Done 
+
+on:
+  pull_request:
+    types:
+      - closed
+    branches:    
+      - my_target
+  
+env: 
+  head_branch : test_branch_2
+  base_branch: main
+  dummy_file: test2.txt
+  
+jobs:
+  release_channel_done :
+    #if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+    steps:
+      - name: Git checkout
+        uses: actions/checkout@v2
+      
+      - name: create branch
+        run: |
+          echo "in creat branch step"
+                
