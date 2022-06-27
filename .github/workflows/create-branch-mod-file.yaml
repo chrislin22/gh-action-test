@@ -1,41 +1,26 @@
-name: 🎋 create new branch with a file
+name: 🏁 Release Channel Done 
 
-on: 
-  workflow_dispatch:  
-
+on:
+  pull_request:
+    types:
+      - closed
+    branches:    
+      - my_target
+  
 env: 
   head_branch : test_branch_2
   base_branch: main
   dummy_file: test2.txt
   
 jobs:
-  create-branch:
+  release_channel_done :
+    if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     steps:
       - name: Git checkout
         uses: actions/checkout@v2
       
-      - name: create branch if not exist yet
+      - name: create branch
         run: |
-          bcount=$(git ls-remote --heads https://github.com/chrislin22/gh-action-test $head_branch | wc -l | xargs)
-          if [[ $bcount == 1 ]]; then
-            exit 0
-          fi
-          
-          git config --local user.email "john.doe@gha"
-          git config --local user.name "Jhon Doe"
-          
-          git checkout -b $head_branch
-          touch $dummy_file
-          echo $dummy_file > $dummy_file
-          git add $dummy_file
-          git commit -m "added $dummy_file"
-          git push -u origin $head_branch
-          
-      - name: create pull request
-        env: 
-          GITHUB_TOKEN : ${{ secrets.GITHUB_TOKEN }}        
-        run: |
-          gh pr create --head "$head_branch" --base "$base_branch"  \
-            --title "title goes here" -r "kknd22" \
-            --body "body goes here" 
+          echo "in creat branch step"
+                
