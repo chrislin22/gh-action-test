@@ -1,0 +1,36 @@
+# This is a basic workflow to help you get started with Actions
+
+name: input parse
+
+# Controls when the workflow will run
+on:
+  workflow_dispatch:
+    inputs:
+      list:
+        description: 'strings seperated by space and commas'
+        required: true
+        type: string
+
+env: 
+  CHANNEL: x , y , z 
+
+jobs:
+  test_string_list:
+    runs-on: ubuntu-latest
+    steps:
+      
+      - name: display transformed inputs
+        run: |
+          aa=$(echo ${{ github.event.inputs.list }} | tr ' ,' '\n')
+          echo "${#aa[@]}
+          for i in $aa; do
+            echo $i
+          done  
+
+      - name: display transformed ENV
+        run: |
+          aa=$(echo ${{ env.CHANNEL }} | tr ' ,' '\n')
+          echo "${#aa[@]}
+          for i in $aa; do
+            echo $i
+          done  
