@@ -31,8 +31,13 @@ jobs:
       - name: display transformed ENV
         run: |
           #!/bin/bash
+          bash -version
           aa=$(echo "${{ env.CHANNEL }}" | tr ' ,' '\n')
-          echo "aa is $aa"
+          echo "double quote around var print if different, no quote ======"
+          echo $aa
+          echo "aa with double quote is ========"
+          echo "$aa"
+          echo "============= aa length ========"
           echo "${#aa[@]}"
           for i in $aa; do
             echo $i
