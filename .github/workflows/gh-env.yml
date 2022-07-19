@@ -37,6 +37,10 @@ jobs:
       - uses: actions/checkout@v2
 #      - uses: actions/checkout@${{  env.VER }}
 
+      - name: Dump all GITHUB_SHA ${{  env.GITHUB_SHA }}
+        run: | 
+          echo "env.GITHUB_SHA is [${{ env.GITHUB_SHA }}]"
+          
       # Runs a single command using the runners shell
       - name: Dump all GH default varaibles ${{  env.VER }}
         run: | 
