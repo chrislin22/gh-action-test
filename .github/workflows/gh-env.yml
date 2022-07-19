@@ -40,6 +40,7 @@ jobs:
       - name: Dump all GITHUB_SHA ${{  env.GITHUB_SHA }}
         run: | 
           echo "env.GITHUB_SHA is [${{ env.GITHUB_SHA }}]"
+          echo "env GITHUB_SHA is [$GITHUB_SHA]"
           
       # Runs a single command using the runners shell
       - name: Dump all GH default varaibles ${{  env.VER }}
