@@ -37,10 +37,11 @@ jobs:
       - uses: actions/checkout@v2
 #      - uses: actions/checkout@${{  env.VER }}
 
-      - name: Dump all GITHUB_SHA ${{  env.GITHUB_SHA }}
+      - name: debug GITHUB_SHA '${{  env.GITHUB_SHA }}' and '${{ github.sha }}'
         run: | 
           echo "env.GITHUB_SHA is [${{ env.GITHUB_SHA }}]"
           echo "env GITHUB_SHA is [$GITHUB_SHA]"
+          echo "github.sha  is [${{ github.sha }}]"
           
       # Runs a single command using the runners shell
       - name: Dump all GH default varaibles ${{  env.VER }}
