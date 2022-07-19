@@ -21,7 +21,7 @@ jobs:
       
       - name: display transformed inputs
         run: |
-          aa=$(echo ${{ github.event.inputs.list }} | tr ' ,' '\n')
+          aa=$(echo "${{ github.event.inputs.list }}" | tr ' ,' '\n')
           echo "${#aa[@]}
           for i in $aa; do
             echo $i
