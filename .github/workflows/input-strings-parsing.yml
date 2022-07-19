@@ -36,3 +36,12 @@ jobs:
           for i in $aa; do
             echo $i
           done  
+
+      - name: display transformed local var
+        run: |
+          aa=$(echo "qq, ww, ee" | tr ' ,' '\n')
+          echo "aa is $aa"
+          echo "${#aa[@]}"
+          for i in $aa; do
+            echo $i
+          done  
