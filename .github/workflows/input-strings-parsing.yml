@@ -29,8 +29,8 @@ jobs:
 
       - name: display transformed ENV
         run: |
-          aa=$(echo ${{ env.CHANNEL }} | tr ' ,' '\n')
-          echo "${#aa[@]}
+          aa=$(echo "${{ env.CHANNEL }}" | tr ' ,' '\n')
+          echo "${#aa[@]}"
           for i in $aa; do
             echo $i
           done  
