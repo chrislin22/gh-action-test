@@ -30,6 +30,7 @@ jobs:
 
       - name: display transformed ENV
         run: |
+          #!/bin/bash
           aa=$(echo "${{ env.CHANNEL }}" | tr ' ,' '\n')
           echo "aa is $aa"
           echo "${#aa[@]}"
@@ -39,6 +40,7 @@ jobs:
 
       - name: display transformed local var
         run: |
+          #!/bin/bash
           aa=$(echo "qq, ww, ee" | tr ' ,' '\n')
           echo "aa is $aa"
           echo "${#aa[@]}"
