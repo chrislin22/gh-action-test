@@ -1,0 +1,54 @@
+name: jq bash loop
+
+on:
+  workflow_dispatch:
+
+jobs:
+  jq_bash_loop:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+    
+    - name: prepare file
+      run: |
+        cat > tf << EOF
+        [
+          {
+            "project": "en.wikipedia",
+            "article": "Talking_Heads_discography",
+            "granularity": "daily",
+            "timestamp": "2021092800",
+            "access": "all-access",
+            "agent": "\nagent11\n agent12",
+            "views": 381
+          },
+          {
+            "project": "en.wikipedia",
+            "article": "Talking_Heads_discography",
+            "granularity": "daily",
+            "timestamp": "2021092900",
+            "access": "all-access",
+            "agent": "all-agents",
+            "views": 419
+          },
+          {
+            "project": "en.wikipedia",
+            "article": "Talking_Heads_discography",
+            "granularity": "daily",
+            "timestamp": "2021093000",
+            "access": "all-access",
+            "agent": "\nagent33\n agent34",
+            "views": 408
+          }
+        ]
+        EOF
+        
+        cat tf
+    
+    - name: run bash jq
+      run: |
+        for row in $(jq -c '.[] | select (.timestamp != "2021092900")' jq-array.json ); do
+          echo $row 
+        done
