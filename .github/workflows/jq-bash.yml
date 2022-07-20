@@ -54,5 +54,5 @@ jobs:
           echo "$row" > tt
           cat tt
           echo "2"
-          echo "$row" | jq '.'
+          #echo "$row" | jq '.'
         done
