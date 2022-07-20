@@ -17,17 +17,13 @@ jobs:
         [
           {
             "project": "en.wikipedia",
-            "article": "Talking_Heads_discography",
-            "granularity": "daily",
             "timestamp": "2021092800",
             "access": "all-access",
-            "agent": "\nagent11\n agent12",
+            "agent": "\nagent11 \n agent12",
             "views": 381
           },
           {
             "project": "en.wikipedia",
-            "article": "Talking_Heads_discography",
-            "granularity": "daily",
             "timestamp": "2021092900",
             "access": "all-access",
             "agent": "all-agents",
@@ -35,11 +31,9 @@ jobs:
           },
           {
             "project": "en.wikipedia",
-            "article": "Talking_Heads_discography",
-            "granularity": "daily",
             "timestamp": "2021093000",
             "access": "all-access",
-            "agent": "\nagent33\n agent34",
+            "agent": "\nagent33 \n agent34",
             "views": 408
           }
         ]
