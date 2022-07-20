@@ -50,6 +50,8 @@ jobs:
     - name: run bash jq
       run: |
         for row in $(jq -c '.[] | select (.timestamp != "2021092900")' tf ); do
-          echo $row
-          echo $row | jq '.agent'
+          echo "1"       
+          echo "$row"
+          echo "2"
+          echo "$row" | jq '.agent'
         done
