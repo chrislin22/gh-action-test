@@ -46,16 +46,14 @@ jobs:
         aa=$(echo '[{"aa": " \n aa33 \n aa44"}, {"aa": " \n aaXX \n aaYY"}]' | jq '.')
         echo $aa
         echo $aa | jq -r '.'
-        #echo $aa | jq -r '[0].aa'
-        for r in $(echo $aa | jq -c '.[]' ); do
+        echo $aa | jq -r '.[0].aa'
+        dd=$(echo $aa | jq -c '.[]' )
+        for r in $dd; do
           echo $r
           echo $r | jq '.aa'
         done
 
-        for row in $(jq -c '.[] | select (.timestamp != "2021092900")' tf ); do
-          echo "1"       
-          echo "$row" > tt
-          cat tt
-          echo "2"
-          #echo "$row" | jq '.'
+        ee=$(jq -c '.[] | select (.timestamp != "2021092900")' tf )
+        for row in $ee; do
+          echo "$row" | jq '.'
         done
