@@ -48,7 +48,12 @@ jobs:
         cat tf
     
     - name: run bash jq
-      run: |
+      run: |    
+        aa=$(echo '{"aa": " \n aa33 \n aa44"}' | jq '.')
+        echo $aa
+        echo $aa | jq -r '.'
+        echo $aa | jq -r '.aa'
+
         for row in $(jq -c '.[] | select (.timestamp != "2021092900")' tf ); do
           echo "1"       
           echo "$row" > tt
