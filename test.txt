@@ -1,2 +1,3 @@
 -Dorg.slf4j.simpleLogger.log.org.apache.maven.plugins.dependency=warn
 -Dorg.slf4j.simpleLogger.log.org.apache.maven.plugins.shade=error
+aaaad
