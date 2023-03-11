@@ -1,0 +1,13 @@
+name: b1-dummy-name
+
+on:
+  workflow_dispatch:
+
+jobs:
+  b1-job:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: debug GITHUB_SHA '${{  env.GITHUB_SHA }}'
+        run: | 
+          echo "env.GITHUB_SHA is [${{ env.GITHUB_SHA }}]"
