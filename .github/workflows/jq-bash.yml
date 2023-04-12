@@ -10,7 +10,10 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-    
+    - name: test to see if helm installed
+      run: |
+        helm version
+        
     - name: prepare file
       run: |
         cat > tf << EOF
