@@ -12,7 +12,10 @@ jobs:
 #        ddata: [ 1, a ]
     
     steps:
-      - name: check matrix content ${{ join(matrix.ddata, ',') }}
+      - name: check matrix content ${{ join(matrix.ddata, ' ') }}
         run: |
-          echo ${{  join(matrix.ddata, ',') }}
+          myArray=( ${{  join(matrix.ddata, ' ') }} )
+          for str in ${myArray[@]}; do
+            echo $str
+          done
 
