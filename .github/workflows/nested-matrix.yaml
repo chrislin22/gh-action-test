@@ -12,7 +12,7 @@ jobs:
 #        ddata: [ 1, a ]
     
     steps:
-      - name: check matrix content ${{ tojson(matrix.ddata) }}
+      - name: check matrix content ${{ join(matrix.ddata, ',') }}
         run: |
-          echo ${{ tojson(matrix.ddata) }}
+          echo ${{  join(matrix.ddata, ',') }}
 
