@@ -8,11 +8,11 @@ jobs:
     
     strategy:
       matrix:
-#        ddata: [ [1, 2], [a, b] ]
-        ddata: [ 1, a ]
+        ddata: [ [1, 2], [a, b] ]
+#        ddata: [ 1, a ]
     
     steps:
-      - name: check matrix content ${{ matrix.ddata }}
+      - name: check matrix content ${{ tojson(matrix.ddata) }}
         run: |
-          echo ${{ matrix.ddata }}
+          echo ${{ tojson(matrix.ddata) }}
 
