@@ -8,7 +8,8 @@ jobs:
     
     strategy:
       matrix:
-        ddata: [ [1, 2], [a, b] ]
+#        ddata: [ [1, 2], [a, b] ]
+        ddata: [ 1, a ]
     
     steps:
       - name: check matrix content ${{ matrix.ddata }}
