@@ -47,10 +47,10 @@ jobs:
     steps:
       - name: check matrix content "${{ matrix.batch }}""
         run: |
-          echo "${{ matrix.batch }}"
-
-          # myArray=( ${{  join(matrix.batch, ' ') }} )
-          # for str in ${myArray[@]}; do
-          #   echo $str
-          # done
+          batch="${{ matrix.batch }}"
+          echo "$batch"
+          clusters="${batch//|/ }"
+          for c in ${clusters}; do
+            echo $c
+          done
 

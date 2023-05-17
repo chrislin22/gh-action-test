@@ -22,6 +22,13 @@ done
 cluster_array_json=$(join_by ", " "${cluster_array[@]}")
 echo "[$cluster_array_json]"
 
+echo "[$cluster_array_json]" | jq -r '.[]' | while read cluster; do
+    echo "${cluster//|/ }"
+    # for c in ${cluster//|/ }; do
+    #     echo $c
+    # done      
+done    
+
 
 
 # cluster_json_array="["
