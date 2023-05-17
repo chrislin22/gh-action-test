@@ -13,22 +13,39 @@ jobs:
 
       - name: generate matrix
         run: |
-          clusters=$(find test-dirs  -type d -maxdepth 2 -mindepth 2 | sort)
-          echo "___ $clusters ___"
+
+          BATCH_SIZE=3
+          clusters=($(find test-dirs  -type d -maxdepth 2 -mindepth 2 | sort))
+
+          function join_by { local IFS="$1"; shift; echo "$*"; }
+
+          # construct a json array each containing a string of list of directories with size of BATCH_SIZE and use vertical bar to separate them  
+          # e.g. ["test-dirs/cluster1/1|test-dirs/cluster1/2", "test-dirs/cluster2/1|test-dirs/cluster2/2"] 
+
+          for ((i=0; i<${#clusters[@]}; i+=BATCH_SIZE)); do
+              batch=("${clusters[@]:i:BATCH_SIZE}")
+              batch=$(join_by "|" "${batch[@]}")
+              echo $batch
+              cluster_array+=("\"$batch\"")
+          done
+          cluster_array_json=$(join_by ", " "${cluster_array[@]}")
+          echo "[$cluster_array_json]"
 
   build:
     runs-on: ubuntu-latest
     
     strategy:
       matrix:
-        ddata: [ [1, 2], [a, b] ]
-#        ddata: [ 1, a ]
-    
+        # get the matrix from the previous job
+        batch: ${{ fromJson(needs.generate-matrix.outputs.matrix) }}  
+
     steps:
-      - name: check matrix content ${{ join(matrix.ddata, ' ') }}
+      - name: check matrix content ${{ join(matrix.batch, ' ') }}
         run: |
-          myArray=( ${{  join(matrix.ddata, ' ') }} )
-          for str in ${myArray[@]}; do
-            echo $str
-          done
+          echo ${{ matrix.batch) }}
+
+          # myArray=( ${{  join(matrix.batch, ' ') }} )
+          # for str in ${myArray[@]}; do
+          #   echo $str
+          # done
 
