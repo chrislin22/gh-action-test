@@ -45,9 +45,9 @@ jobs:
         batch: ${{ fromJson(needs.generate-matrix.outputs.out_matrix) }}  
 
     steps:
-      - name: check matrix content ${{ matrix.batch }}
+      - name: check matrix content "${{ matrix.batch }}""
         run: |
-          echo ${{ matrix.batch }}
+          echo "${{ matrix.batch }}"
 
           # myArray=( ${{  join(matrix.batch, ' ') }} )
           # for str in ${myArray[@]}; do
