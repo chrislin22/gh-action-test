@@ -7,11 +7,14 @@ on:
 jobs:
   generate-matrix:
     runs-on: ubuntu-latest
+    outputs:
+      out_matrix: ${{ steps.generate-matrix.outputs.batch_matrix }}    
     steps:
       - name: Git checkout
         uses: actions/checkout@v3
 
       - name: generate matrix
+        id: generate-matrix
         run: |
 
           BATCH_SIZE=3
@@ -29,15 +32,17 @@ jobs:
               cluster_array+=("\"$batch\"")
           done
           cluster_array_json=$(join_by ", " "${cluster_array[@]}")
-          echo "[$cluster_array_json]"
+          echo "$cluster_array_json"
+                    # set output for the job
+          echo "batch_matrix=[ $cluster_array_json ]" >> $GITHUB_OUTPUT
 
   build:
     runs-on: ubuntu-latest
-    
+    needs: [generate-matrix]    
     strategy:
       matrix:
         # get the matrix from the previous job
-        batch: ${{ fromJson(needs.generate-matrix.outputs.matrix) }}  
+        batch: ${{ fromJson(needs.generate-matrix.outputs.out_matrix) }}  
 
     steps:
       - name: check matrix content ${{ matrix.batch }}
