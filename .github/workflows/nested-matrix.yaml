@@ -13,7 +13,7 @@ jobs:
 
       - name: generate matrix
         run: |
-          clusters=($(find test-dirs  -type d -maxdepth 2 -mindepth 2 | sort))
+          clusters=$(find test-dirs  -type d -maxdepth 2 -mindepth 2 | sort)
           echo "___$clusters___"
 
   build:
