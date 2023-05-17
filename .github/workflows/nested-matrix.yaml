@@ -1,4 +1,6 @@
 name: nested matrix
+env: 
+  BATCH_SIZE: 2  
 on: 
   workflow_dispatch:
 
