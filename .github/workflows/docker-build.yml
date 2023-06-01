@@ -15,10 +15,17 @@ jobs:
       - name: Checkout 
         uses: actions/checkout@v2
 
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v1
+#       - name: Set up Docker Buildx
+#         uses: docker/setup-buildx-action@v1
         
-      - name: pull a docker image
+#       - name: pull a docker image
+#         run: |
+#           docker pull hello-world
+#           docker images
+
+      - name: login to registry.cloud-tools.datastax.com
+        env:
+          USER_NAME: ${{ secrets.DMC_DOCKER_REGISTRY_USER_NAME }}
+          PASSWORD: ${{ secrets.DMC_DOCKER_REGISTRY_PASSWORD }}
         run: |
-          docker pull hello-world
-          docker images
+          docker login registry.cloud-tools.datastax.com -u $USER_NAME -p $PASSWORD
