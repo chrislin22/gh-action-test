@@ -24,11 +24,6 @@ jobs:
 #           docker images
 
       - name: login to registry.cloud-tools.datastax.com
-        env:
-          USER_NAME: ${{ secrets.DMC_DOCKER_REGISTRY_USER_NAME }}
-          PASSWORD: ${{ secrets.DMC_DOCKER_REGISTRY_PASSWORD }}
         run: |
-           # echo "${{ secrets.DMC_DOCKER_REGISTRY_PASSWORD }}" | docker login --username "${{ secrets.DMC_DOCKER_REGISTRY_USER_NAME }}" --password-stdin registry.cloud-tools.datastax.com 
-           # echo "${{ secrets.DOCKER_CFG }}" > ~/.docker/config.jspn
-           echo "${{ secrets.DOCKER_CFG }}" > .dockercfg
+           echo "${{ secrets.DOCKER_CFG }}" > ~/.docker/config.jspn
            docker login registry.cloud-tools.datastax.com 
