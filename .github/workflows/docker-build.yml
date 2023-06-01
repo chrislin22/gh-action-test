@@ -28,7 +28,4 @@ jobs:
           USER_NAME: ${{ secrets.DMC_DOCKER_REGISTRY_USER_NAME }}
           PASSWORD: ${{ secrets.DMC_DOCKER_REGISTRY_PASSWORD }}
         run: |
-          ls -al ~
-          ls -al ~/.docker
-          cat ~/.docker/config.json
-          #echo "${{ secrets.DMC_DOCKER_REGISTRY_PASSWORD }}" | docker login --username "dmc_dr_user" --password-stdin registry.cloud-tools.datastax.com 
+          echo "${{ secrets.DMC_DOCKER_REGISTRY_PASSWORD }}" | docker login --username "dmc_dr_user" --password-stdin registry.cloud-tools.datastax.com 
