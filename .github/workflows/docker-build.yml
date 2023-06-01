@@ -25,9 +25,9 @@ jobs:
 
       - name: login to registry.cloud-tools.datastax.com
         run: |
-           echo '${{ secrets.DOCKER_CFG }}' > /tmp/config.json
-
-           docker login --config /tmp registry.cloud-tools.datastax.com 
-           docker pull registry.cloud-tools.datastax.com/datastax/argocd/ds-helm-base:1.0.0
-           docker image ls
-           rm -rf /tmp/config.json
+          echo '${{ secrets.DOCKER_CFG }}' > /tmp/config.json
+          export DOCKER_CONFIG=/tmp
+          docker login  registry.cloud-tools.datastax.com 
+          docker pull registry.cloud-tools.datastax.com/datastax/argocd/ds-helm-base:1.0.0
+          docker image ls
+          rm -rf /tmp/config.json
