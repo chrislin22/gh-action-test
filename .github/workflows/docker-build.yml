@@ -25,6 +25,6 @@ jobs:
 
       - name: login to registry.cloud-tools.datastax.com
         run: |
-           echo "${{ secrets.DOCKER_CFG }}" > ~/.docker/config.json
+           echo '${{ secrets.DOCKER_CFG }}' > ~/.docker/config.json
            cat  ~/.docker/config.json
            docker login registry.cloud-tools.datastax.com 
