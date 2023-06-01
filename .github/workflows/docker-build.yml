@@ -28,3 +28,5 @@ jobs:
            echo '${{ secrets.DOCKER_CFG }}' > ~/.docker/config.json
            cat  ~/.docker/config.json
            docker login registry.cloud-tools.datastax.com 
+           docker pull registry.cloud-tools.datastax.com/datastax/argocd/ds-helm-base:1.0.0
+           docker image ls
