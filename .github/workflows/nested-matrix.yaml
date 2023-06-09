@@ -62,5 +62,5 @@ jobs:
     runs-on: ubuntu-latest
     needs: [build]
     steps:
-      - name: workflow done
-        run: echo "workflow done"; exist 22
+      - name: Check previous job status
+        run: exit $(failure)
