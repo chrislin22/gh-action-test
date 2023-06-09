@@ -2,6 +2,9 @@ name: nested matrix
 env: 
   BATCH_SIZE: 2  
 on: 
+  pull_request:
+    branches: [ main ]
+  
   workflow_dispatch:
 
 jobs:
@@ -54,3 +57,9 @@ jobs:
             echo $c
           done
 
+  nested-wf-done:
+    runs-on: ubuntu-latest
+    needs: [build]
+    steps:
+      - name: workflow done
+        run: echo "workflow done"
