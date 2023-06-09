@@ -57,6 +57,7 @@ jobs:
           for c in ${clusters}; do
             echo $c
           done
+          exit 22
 
   nested-wf-done:
     if: ${{ failure() }}
