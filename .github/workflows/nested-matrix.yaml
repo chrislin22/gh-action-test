@@ -63,4 +63,4 @@ jobs:
     needs: [build]
     steps:
       - name: Check previous job status
-        run: exit $(failure)
+        run: exit $(failure())
