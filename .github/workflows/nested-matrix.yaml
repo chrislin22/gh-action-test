@@ -2,6 +2,9 @@ name: nested matrix
 env: 
   BATCH_SIZE: 2  
 on: 
+  pull_request:
+    branches: [ my-protected ]
+  
   workflow_dispatch:
 
 jobs:
@@ -36,6 +39,7 @@ jobs:
                     # set output for the job
           echo "batch_matrix=[ $cluster_array_json ]" >> $GITHUB_OUTPUT
 
+
   build:
     runs-on: ubuntu-latest
     needs: [generate-matrix]    
@@ -54,3 +58,12 @@ jobs:
             echo $c
           done
 
+  nested-wf-done:
+    if: ${{ failure() }}
+    runs-on: ubuntu-latest
+    needs: [build]
+    steps:
+      - name: Check previous job status
+        run: |
+          echo "previous job failed"
+          exit 11
