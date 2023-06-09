@@ -65,4 +65,5 @@ jobs:
     steps:
       - name: Check previous job status
         run: |
-          echo "yes"
+          echo "previous job failed"
+          exit 11
