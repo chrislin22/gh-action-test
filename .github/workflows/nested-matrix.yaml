@@ -63,4 +63,6 @@ jobs:
     needs: [build]
     steps:
       - name: Check previous job status
-        run: exit $(failure())
+        run: |
+          echo "---[${{ failure() }}]---"
+          exit  ${{ failure() }}
