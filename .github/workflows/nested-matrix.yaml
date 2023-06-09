@@ -3,7 +3,7 @@ env:
   BATCH_SIZE: 2  
 on: 
   pull_request:
-    branches: [ main ]
+    branches: [ my-protected ]
   
   workflow_dispatch:
 
