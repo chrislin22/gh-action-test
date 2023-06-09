@@ -38,7 +38,7 @@ jobs:
           echo "$cluster_array_json"
                     # set output for the job
           echo "batch_matrix=[ $cluster_array_json ]" >> $GITHUB_OUTPUT
-          exit 11
+
 
   build:
     runs-on: ubuntu-latest
