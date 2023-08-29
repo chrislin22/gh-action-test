@@ -1,0 +1,18 @@
+name: test shared act-1
+on: [workflow_dispatch]
+
+
+jobs:
+  hello_world_job:
+    runs-on: ubuntu-latest
+    name: A job use composite 
+    steps:
+      - id: foo
+        uses: datastax/shared-github-actions/actions/act-1@test-action
+        with:
+          a1_input_1: 'a1_input_1_val'
+          a1_input_2: 'MEme'
+      - run: |
+          env
+          echo "-----------"
+          env | grep  a1_input_1
