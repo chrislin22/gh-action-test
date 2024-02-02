@@ -101,4 +101,8 @@ jobs:
         run: |
          yq --version
          echo "CHANNEL is [$CHANNEL]"
+         echo "invoke resolvectl "
+         resolvectl
+         echo "invoke resolvectl status"
+         resolvectl status
   
