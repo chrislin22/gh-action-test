@@ -56,7 +56,8 @@ jobs:
           echo $r | jq '.aa'
         done
 
-        ee=$(jq -c '.[] | select (.timestamp != "2021092900")' tf )
-        for row in $ee; do
-          echo "$row" | jq '.'
-        done
+    - name: test github ref_name and github.sha
+      run: |    
+        echo "github.ref_name: [${{ github.ref_name }}] "
+        echo "github.sha: [${{ github.sha }}] "
+        echo "combo: [${{ format('{0}.{1}', github.ref_name, github.sha) }}]"
