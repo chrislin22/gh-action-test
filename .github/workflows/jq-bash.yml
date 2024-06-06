@@ -47,14 +47,14 @@ jobs:
     - name: run bash jq
       run: |    
         aa=$(echo '[{"aa": " \n aa33 \n aa44"}, {"aa": " \n aaXX \n aaYY"}]' | jq '.')
-        echo $aa
-        echo $aa | jq -r '.'
-        echo $aa | jq -r '.[0].aa'
-        dd=$(echo $aa | jq -c '.[]' )
-        for r in $dd; do
-          echo $r
-          echo $r | jq '.aa'
-        done
+        # echo $aa
+        # echo $aa | jq -r '.'
+        # echo $aa | jq -r '.[0].aa'
+        # dd=$(echo $aa | jq -c '.[]' )
+        # for r in $dd; do
+        #   echo $r
+        #   echo $r | jq '.aa'
+        # done
 
     - name: test github ref_name and github.sha
       run: |    
