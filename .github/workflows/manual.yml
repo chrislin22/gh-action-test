@@ -19,9 +19,17 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
     
+    - name: PWD pre git checkout
+      run: |
+        echo "pre git checkout PWD is: [$PWD]"
+
     - name: Git checkout
-      uses: actions/checkout@v2    
+      uses: actions/checkout@v4    
     
+    - name: PWD post git checkout
+      run: |
+        echo "post git checkout PWD is: [$PWD]"
+
     - name: test sed
       run: |
         ls -al
